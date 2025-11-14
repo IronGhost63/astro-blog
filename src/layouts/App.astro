@@ -1,0 +1,20 @@
+---
+import '../styles/app.css';
+import { SITE_TITLE } from '../consts';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{ SITE_TITLE }</title>
+</head>
+<body>
+  <Header/>
+  <div class="main">
+    <slot />
+  </div>
+  <Footer/>
+</body>
+</html>

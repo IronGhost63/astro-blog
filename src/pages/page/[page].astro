@@ -1,0 +1,14 @@
+---
+import App from "../../layouts/App.astro";
+
+export const getStaticPaths = () => [
+  { params: { page: 1 } },
+  { params: { page: 2 } },
+  { params: { page: 3 } },
+];
+
+const { page } = Astro.params;
+---
+<App>
+  <h1>You are on page {page}</h1>
+</App>

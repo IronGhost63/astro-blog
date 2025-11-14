@@ -1,0 +1,29 @@
+---
+import App from "../../../layouts/App.astro";
+import { CMS_URL } from "../../../consts";
+
+const { year, month, slug } = Astro.params;
+
+export const getStaticPaths = async () => {
+  const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts?slug=${slug}`);
+  const posts = await res.json();
+
+  console.log(posts);
+
+  return [
+    {
+      params: {
+        year: '2025',
+        month: '01',
+        slug: 'hello-world',
+      }
+    },
+  ]
+};
+---
+<App>
+  <div class="container mx-auto">
+    <h1>Browsing on {year}/{month}</h1>
+    <h3>Slug: {slug}</h3>
+  </div>
+</App>
