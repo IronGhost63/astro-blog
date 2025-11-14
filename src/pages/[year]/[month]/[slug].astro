@@ -18,7 +18,7 @@ export const getStaticPaths = async () => {
   });
 };
 
-const { year, month, slug } = Astro.params;
+const { slug } = Astro.params;
 
 const fetchData = async () => {
   const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts/?slug=${slug}`);
