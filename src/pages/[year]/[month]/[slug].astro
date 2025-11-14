@@ -5,7 +5,7 @@ import { CMS_URL } from "../../../consts";
 const { year, month, slug } = Astro.params;
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts?slug=${slug}`);
+  const res = await fetch(`${CMS_URL}/wp-json/cms/v1/posts`);
   const posts = await res.json();
 
   console.log(posts);
