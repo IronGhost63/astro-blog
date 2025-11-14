@@ -1,0 +1,27 @@
+@utility heading-* {
+  @apply font-ibm-plex font-semibold leading-[1.1] mb-4 lg:mb-8;
+}
+
+@utility heading-1 {
+  @apply text-[60px];
+}
+
+@utility heading-2 {
+  @apply text-[48px];
+}
+
+@utility heading-3 {
+  @apply text-[32px];
+}
+
+@utility heading-4 {
+  @apply text-[24px];
+}
+
+@utility heading-5 {
+  @apply text-[16px];
+}
+
+@utility heading-6 {
+  @apply text-[10px];
+}

@@ -4,3 +4,4 @@
 export const SITE_TITLE = 'JIRAYU.IN.TH';
 export const SITE_DESCRIPTION = 'Welcome to my website!';
 export const CMS_URL = 'https://cms.jirayu.in.th';
+export const POSTS_PER_PAGE = 5;

@@ -1,1 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=Sarabun:wght@400;700&display=swap');
 @import "tailwindcss";
+@import "./utilities.css";
+
+@theme {
+  --font-ibm-plex: "IBM Plex Sans Thai", sans-serif;
+  --font-sarabun: "Sarabun", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-sarabun text-xl leading-[1.6];
+  }
+
+  code {
+    @apply font-mono border rounded p-1 border-gray-300 bg-gray-100;
+  }
+
+  .wp-block-code code {
+    @apply block mb-3 p-3;
+  }
+}
+
+@layer component {
+  .post-content {
+    p {
+      @apply mb-2 lg:mb-4
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      @apply mt-4 lg:mt-8
+    }
+
+    h1 {
+      @apply heading-1;
+    }
+
+    h2 {
+      @apply heading-2;
+    }
+
+    h3 {
+      @apply heading-3;
+    }
+
+    h4 {
+      @apply heading-4;
+    }
+
+    h5 {
+      @apply heading-5;
+    }
+
+    h6 {
+      @apply heading-6;
+    }
+  }
+}
+
+@layer utilities {
+  .aligncenter {
+    @apply text-center;
+
+    img {
+      @apply mx-auto;
+    }
+  }
+}

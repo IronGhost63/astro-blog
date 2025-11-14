@@ -1,0 +1,12 @@
+---
+const { totalPages, currentPage, baseUrl } = Astro.props;
+---
+<div class="pagination">
+  <ul class="flex justify-center">
+    { Array.from({ length: totalPages }, (_, i) => i + 1).map( (page) => (
+      <li class="px-1">
+        <a href={`${baseUrl}/${page}`} data-page={page} class={`block text-sm p-2 w-8 h-8 border ${page == currentPage ? 'bg-gray-200' : 'bg-gray-100'} border-gray-100 hover:border-gray-300`}>{page}</a>
+      </li>
+    )) }
+  </ul>
+</div>
