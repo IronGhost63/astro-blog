@@ -1,8 +1,9 @@
 ---
 import App from "../../layouts/App.astro";
-import { POSTS_PER_PAGE } from "../../consts";
+import BlogItem from "../../components/BlogItem.astro";
 import Pagination from "../../components/Pagination.astro";
 import postIndex from "../../data/postIndex";
+import { POSTS_PER_PAGE, CMS_URL } from "../../consts";
 
 const totalPosts = postIndex.results.length;
 const totalPages = Math.ceil( totalPosts/POSTS_PER_PAGE );
@@ -21,19 +22,14 @@ export const getStaticPaths = async () => {
 }
 
 const { page } = Astro.params;
+const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts?page=${page}&per_page=${POSTS_PER_PAGE}&_embed`);
+const posts = await res.json();
 ---
 <App>
   <div class="container mx-auto">
-    <!-- {
-      postData.map( (post) => (
-        <div class="post-body max-w-[720px] px-4 mx-auto">
-          <div class="post-header">
-            <h1 class="post-title heading-1" set:html={post.title.rendered} />
-          </div>
-          <div class="post-content" set:html={post.content.rendered} />
-        </div>
-      ))
-    } -->
+    { posts.map( (post) => (
+      <BlogItem postData={post} />
+    )) }
     <Pagination currentPage={page} baseUrl="/page" totalPages={totalPages}/>
   </div>
 </App>

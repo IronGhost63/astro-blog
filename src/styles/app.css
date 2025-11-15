@@ -16,6 +16,12 @@
     @apply font-mono border rounded p-1 border-gray-300 bg-gray-100;
   }
 
+  a {
+    &:hover {
+      @apply text-blue-900 no-underline;
+    }
+  }
+
   .wp-block-code code {
     @apply block mb-3 p-3;
   }

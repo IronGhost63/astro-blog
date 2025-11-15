@@ -1,0 +1,18 @@
+---
+import { getPermalink } from '../utilities/post-utilities';
+
+const {postData} = Astro.props;
+
+const permalink = getPermalink( postData );
+---
+<div class="post-item max-w-[720px] px-4 mx-auto mb-6 lg:mb-12 pb-6 lg:pb-12 border-b border-gray-300">
+  <div class="post-header">
+    <a href={permalink}>
+      <h1 class="post-title heading-1" set:html={postData.title.rendered} />
+    </a>
+    <div class="post-cover py-4 mb-4 lg:mb-8">
+      <img src={postData._embedded['wp:featuredmedia'][0].source_url} alt={postData.title.rendered} class="post-cover-image">
+    </div>
+  </div>
+  <div class="post-content" set:html={postData.excerpt.rendered} />
+</div>
