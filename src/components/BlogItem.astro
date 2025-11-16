@@ -1,13 +1,22 @@
 ---
+import { undefined } from "astro:schema";
 import { getPermalink } from '../utilities/post-utilities';
 import Button from "./Button.astro";
 
 const {postData} = Astro.props;
 
 const permalink = getPermalink( postData );
-const featuredImage = postData._embedded['wp:featuredmedia'] !== undefined ? postData._embedded['wp:featuredmedia'][0].source_url : false;
+const featuredImage = (typeof postData._embedded['wp:featuredmedia'] !== 'undefined') ? postData._embedded['wp:featuredmedia'].at(0).source_url : false;
+// const featuredImage = (() => {
+//   if (  postData._embedded['wp:featuredmedia'] === undefined ) {
+//     return false;
+//   }
 
-console.log( permalink );
+//   const [media] = postData._embedded['wp:featuredmedia'];
+
+//   return media.source_url;
+// })();
+
 ---
 <div class="post-item max-w-[720px] px-4 mx-auto mb-6 lg:mb-12 pb-6 lg:pb-12 border-b border-gray-300">
   <div class="post-header">
