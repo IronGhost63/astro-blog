@@ -1,0 +1,51 @@
+@layer components {
+  .post-content {
+    p {
+      @apply mb-2 lg:mb-4
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      @apply mt-4 lg:mt-8
+    }
+
+    h1 {
+      @apply heading-1;
+    }
+
+    h2 {
+      @apply heading-2;
+    }
+
+    h3 {
+      @apply heading-3;
+    }
+
+    h4 {
+      @apply heading-4;
+    }
+
+    h5 {
+      @apply heading-5;
+    }
+
+    h6 {
+      @apply heading-6;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+
+    ol {
+      @apply list-decimal;
+    }
+
+    ul, ol {
+      @apply ml-7 mb-2 lg:mb-4;
+    }
+
+    li {
+      @apply pl-2;
+    }
+  }
+}

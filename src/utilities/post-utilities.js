@@ -7,5 +7,5 @@ export const getPermalink = ( post ) => {
   const month = String(postDate.get('month') + 1).padStart(2, '0');
   const slug = post.slug;
 
-  return `${year}/${month}/${slug}`;
+  return `/${year}/${month}/${slug}`;
 }
