@@ -2,6 +2,7 @@
 import App from "../../../layouts/App.astro";
 import { CMS_URL } from "../../../consts";
 import postsIndex from "../../../data/postIndex";
+import { getFeaturedImage } from "../../../utilities/post-utilities";
 
 export const getStaticPaths = async () => {
   return postsIndex.results.map((item) => {
@@ -27,7 +28,7 @@ const fetchData = async () => {
 }
 
 const postData = await fetchData();
-const featuredImage = (typeof postData._embedded['wp:featuredmedia'] !== 'undefined') ? postData._embedded['wp:featuredmedia'].at(0).source_url : false;
+const featuredImage = getFeaturedImage( postData );
 // const featuredImage = (() => {
 //   if (  postData._embedded['wp:featuredmedia'] === undefined ) {
 //     return false;

@@ -9,3 +9,13 @@ export const getPermalink = ( post ) => {
 
   return `/${year}/${month}/${slug}`;
 }
+
+export const getFeaturedImage = ( post ) => {
+  const { _embedded: media  } = post;
+
+  if ( !Object.hasOwn( media, 'wp:featuredmedia' ) ) {
+    return false;
+  }
+
+  return media['wp:featuredmedia'].at(0).source_url;
+}
