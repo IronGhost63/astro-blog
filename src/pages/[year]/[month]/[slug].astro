@@ -10,7 +10,7 @@ export const getStaticPaths = async () => {
       params: {
         year: item.year,
         month: item.month,
-        slug: item.slug,
+        slug: decodeURI(item.slug),
       }
     }
 
@@ -21,24 +21,14 @@ export const getStaticPaths = async () => {
 const { slug } = Astro.params;
 
 const fetchData = async () => {
-  const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts/?slug=${slug}&_embed`);
+  const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts/?slug=${encodeURI(slug)}&_embed`);
   const post = await res.json();
 
   return post;
 }
 
 const postData = await fetchData();
-const featuredImage = getFeaturedImage( postData );
-// const featuredImage = (() => {
-//   if (  postData._embedded['wp:featuredmedia'] === undefined ) {
-//     return false;
-//   }
-
-//   const [media] = postData._embedded['wp:featuredmedia'];
-
-//   return media.source_url;
-// })();
-
+const featuredImage = getFeaturedImage( postData[0] );
 ---
 <script>
 const postContent = document.querySelector('.post-content');
