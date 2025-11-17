@@ -9,6 +9,15 @@ import Footer from '../components/Footer.astro';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{ SITE_TITLE }</title>
+  <!-- Google tag (gtag.js) -->
+  <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-M2C2Y4K919"></script>
+  <script type="text/partytown">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-M2C2Y4K919');
+  </script>
 </head>
 <body>
   <Header/>

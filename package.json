@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.10",
+    "@astrojs/partytown": "^2.1.4",
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
+    "@jop-software/astro-cookieconsent": "^3.0.1",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.6",
     "dayjs": "^1.11.19",
     "highlight.js": "^11.11.1",
     "sharp": "^0.34.3",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "vanilla-cookieconsent": "^3.1.0"
   }
 }
