@@ -1,11 +1,9 @@
-@layer components {
-  .post-content {
+<style>
+  @reference "../styles/app.css";
+
+  .content-area {
     p {
       @apply mb-2 lg:mb-4
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-      @apply mt-4 lg:mt-8
     }
 
     h1 {
@@ -47,5 +45,12 @@
     li {
       @apply pl-2;
     }
+
+    .wp-block-image {
+      @apply my-6 lg:my-10;
+    }
   }
-}
+</style>
+<div class="content-area">
+  <slot/>
+</div>

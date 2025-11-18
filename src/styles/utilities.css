@@ -1,5 +1,5 @@
 @utility heading-* {
-  @apply font-ibm-plex font-semibold leading-[1.1] mb-4 lg:mb-8;
+  @apply font-ibm-plex font-semibold leading-[1.1] mb-3 lg:mb-6 mt-8 lg:mt-12;
 }
 
 @utility heading-1 {

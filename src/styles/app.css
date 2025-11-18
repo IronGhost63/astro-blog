@@ -13,10 +13,6 @@
   --color-lime-moss: #a5be00;
 }
 
-@import "./components/cta-button.css";
-@import "./components/header.css";
-@import "./components/post-content.css";
-
 @layer base {
   body {
     @apply font-sarabun text-xl leading-[1.6];

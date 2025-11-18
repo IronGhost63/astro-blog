@@ -1,6 +1,7 @@
 ---
 import { getPermalink, getFeaturedImage } from '../utilities/post-utilities';
 import Button from "./Button.astro";
+import ContentArea from "./ContentArea.astro";
 
 const {postData} = Astro.props;
 
@@ -19,6 +20,8 @@ const featuredImage = getFeaturedImage( postData );
       </div>
     )}
   </div>
-  <div class="post-content" set:html={postData.excerpt.rendered} />
+  <ContentArea>
+    <div class="post-content" set:html={postData.excerpt.rendered} />
+  </ContentArea>
   <Button url={permalink}>Read More</Button>
 </div>

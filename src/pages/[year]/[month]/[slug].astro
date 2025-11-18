@@ -1,5 +1,6 @@
 ---
 import App from "../../../layouts/App.astro";
+import ContentArea from "../../../components/ContentArea.astro";
 import { CMS_URL } from "../../../consts";
 import postsIndex from "../../../data/postIndex";
 import { getFeaturedImage } from "../../../utilities/post-utilities";
@@ -54,7 +55,9 @@ if ( codeBlocks && codeBlocks.length > 0) {
             </div>
           )}
         </div>
-        <div class="post-content" set:html={post.content.rendered} />
+        <ContentArea>
+          <div class="post-content" set:html={post.content.rendered} />
+        </ContentArea>
       </div>
     )) }
   </div>
