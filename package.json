@@ -14,6 +14,7 @@
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
     "@jop-software/astro-cookieconsent": "^3.0.1",
+    "@swup/astro": "^1.7.0",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.6",
     "dayjs": "^1.11.19",
