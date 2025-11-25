@@ -17,7 +17,7 @@ export default defineConfig({
       swup({
         theme: 'fade',
         animationClass: 'transition-',
-        containers: ['main'],
+        containers: ['.main', 'header'],
         cache: true,
         preload: true,
         accessibility: true,
