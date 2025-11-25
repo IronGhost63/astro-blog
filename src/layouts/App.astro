@@ -3,12 +3,17 @@ import '../styles/app.css';
 import { SITE_TITLE } from '../consts';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const requestUrl = new URL(Astro.request.url);
+const site = String(Astro.site).replace(/\/+$/, '');
+const canonicalUrl = `${site}${requestUrl.pathname}`;
 ---
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{ SITE_TITLE }</title>
+  <link rel="canonical" href={canonicalUrl}>
   <!-- Google tag (gtag.js) -->
   <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-M2C2Y4K919"></script>
   <script type="text/partytown">
