@@ -49,6 +49,36 @@
     .wp-block-image {
       @apply my-6 lg:my-10;
     }
+
+    .wp-block-gallery {
+      .blocks-gallery-grid {
+        @apply grid list-none gap-4;
+      }
+
+      &.columns-1 {
+        .blocks-gallery-grid {
+          @apply grid-cols-1;
+        }
+      }
+
+      &.columns-2 {
+        .blocks-gallery-grid {
+          @apply grid-cols-2;
+        }
+      }
+
+      &.columns-3 {
+        .blocks-gallery-grid {
+          @apply grid-cols-3;
+        }
+      }
+
+      &.columns-4 {
+        .blocks-gallery-grid {
+          @apply grid-cols-4;
+        }
+      }
+    }
   }
 </style>
 <div class="content-area">
