@@ -52,28 +52,36 @@
 
     .wp-block-gallery {
       .blocks-gallery-grid {
-        @apply grid list-none gap-4 ml-0;
+        @apply grid list-none gap-4 ml-0 w-full;
       }
 
       &.columns-1 {
+        @apply columns-auto;
+
         .blocks-gallery-grid {
           @apply grid-cols-1;
         }
       }
 
       &.columns-2 {
+        @apply columns-auto;
+
         .blocks-gallery-grid {
           @apply grid-cols-2;
         }
       }
 
       &.columns-3 {
+        @apply columns-auto;
+
         .blocks-gallery-grid {
           @apply grid-cols-3;
         }
       }
 
       &.columns-4 {
+        @apply columns-auto;
+
         .blocks-gallery-grid {
           @apply grid-cols-4;
         }
