@@ -1,7 +1,9 @@
 ---
 import App from "../layouts/App.astro";
 
-const DB = Astro.locals.runtime.env.DB;
+const { DB } = Astro.locals.runtime.env;
+
+console.log( Astro.locals.runtime )
 
 const statement = DB.prepare(`SELECT * FROM web_posts ORDER BY datetime DESC`);
 const posts = await statement.run();
