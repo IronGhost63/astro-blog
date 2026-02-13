@@ -1,0 +1,17 @@
+---
+import App from "../layouts/App.astro";
+
+const DB = Astro.locals.runtime.env.DB;
+
+const statement = DB.prepare(`SELECT * FROM web_posts ORDER BY datetime DESC`);
+const posts = await statement.run();
+---
+
+<App>
+  <div class="container mx-auto">
+    { posts.map( (post) => (
+			<h1>{post.title}</h1>
+      <div>{post.excerpt}</div>
+    )) }
+  </div>
+</App>

@@ -7,9 +7,16 @@ import tailwindcss from "@tailwindcss/vite";
 // import cookieconsent  from '@jop-software/astro-cookieconsent';
 import partytown from '@astrojs/partytown';
 import swup from '@swup/astro';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
+    adapter: cloudflare({
+      platformProxy: {
+        enabled: true
+      },
+      imageService: "cloudflare"
+    }),
     site: 'https://jirayu.in.th',
     integrations: [
       mdx(),
