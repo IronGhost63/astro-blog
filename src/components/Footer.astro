@@ -1,29 +1,14 @@
 ---
 const today = new Date();
 ---
-
-<footer>
-  <p>&copy; {today.getFullYear()} JIRAYU.IN.TH. All rights reserved.</p>
-  <p>Powered by <a href="https://jirayu.short.gy/cloudways-hosting" target="_blank">Cloudways</a></p>
-</footer>
 <style>
+  @reference "../styles/app.css";
+
   footer {
-    padding: 2em 1em 6em 1em;
-    background: linear-gradient(var(--gray-gradient)) no-repeat;
-    color: rgb(var(--gray));
-    text-align: center;
-  }
-  .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1em;
-    margin-top: 1em;
-  }
-  .social-links a {
-    text-decoration: none;
-    color: rgb(var(--gray));
-  }
-  .social-links a:hover {
-    color: rgb(var(--gray-dark));
+    @apply bg-alt-black p-8;
   }
 </style>
+
+<footer>
+  &copy; {today.getFullYear()} JIRAYU.IN.TH. All rights reserved.
+</footer>

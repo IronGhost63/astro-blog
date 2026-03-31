@@ -1,52 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&family=Sarabun:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Thai:wght@400;600;700&family=Sarabun:wght@400;700&display=swap');
 @import "tailwindcss";
 @import "highlight.js/styles/stackoverflow-light.css";
 @import "./utilities.css";
 
+:root {
+  --color-alt-black: #212121;
+  --color-carbon-black: #191919;
+  --color-ink-black: #111827;
+  --color-slate-gray: #6b7280;
+  --color-space-indigo: #2b2d42;
+  --color-lavender-grey: #8d99ae;
+  --color-platinum: #edf2f4;
+  --color-strawberry-red: #ef233c;
+  --color-classic-crimson: #d80032;
+  --color-ruby-red: #a31621;
+  --color-yale-blue: #094074;
+  --color-baltic-blue: #3c6997;
+  --color-mustard: #ffdd4a;
+  --color-deep-saffron: #fe9000;
+  --color-jungle-teal: #138168;
+  --color-emerald-depths: #004b31;
+}
+
 @theme {
+  --font-bebas: "Bebas Neue", sans-serif;
   --font-ibm-plex: "IBM Plex Sans Thai", sans-serif;
   --font-sarabun: "Sarabun", sans-serif;
-  --color-baltic-blue: #05668d;
-  --color-steel-blue: #427aa1;
-  --color-alice-blue: #ebf2fa;
-  --color-sage-green: #679436;
-  --color-lime-moss: #a5be00;
+  --color-black: var(--color-carbon-black);
+  --color-alt-black: var(--color-alt-black);
+  --color-gray: var(--color-slate-gray);
+  --color-red: var(--color-ruby-red);
+  --color-blue: var(--color-baltic-blue);
+  --color-dark-blue: var(--color-yale-blue);
+  --color-green: var(--color-jungle-teal);
+  --color-dark-green: var(--color-emerald-depths);
+  --color-yellow: var(--color-mustard);
+  --color-orange: var(--color-deep-saffron);
 }
 
 @layer base {
   body {
-    @apply font-sarabun text-xl leading-[1.6];
+    @apply text-white bg-black font-sarabun;
   }
 
-  code {
-    @apply font-mono border rounded p-1 border-gray-300 bg-gray-100;
-  }
-
-  a {
-    @apply text-steel-blue transition-colors duration-300 ease-in-out;
-
-    &:hover {
-      @apply text-baltic-blue no-underline;
-    }
-  }
-
-  .wp-block-code code {
-    @apply block mb-3 p-3;
-  }
-}
-
-@layer component {
   .main {
-    @apply mt-8 lg:mt-12;
-  }
-}
+    /* @apply bg-white text-black mx-4 my-0 p-4 rounded-2xl; */
 
-@layer utilities {
-  .aligncenter {
-    @apply text-center;
-
-    img {
-      @apply mx-auto;
-    }
+    @apply mx-4 my-0 p-6;
   }
 }

@@ -1,0 +1,39 @@
+---
+import Button from "@component/Button.astro";
+import { getPostPermalink } from "@src/helpers";
+
+const { post } = Astro.props;
+const permalink = getPostPermalink(post.data);
+---
+<style>
+  @reference "../styles/app.css";
+
+  article {
+    @apply lg:aspect-video lg:relative card-border flex;
+  }
+
+  .featured-image {
+    @apply w-1/2 h-full object-cover relative z-1 rounded-r-4xl;
+  }
+
+  .summary {
+    @apply w-1/2 p-8 text-black h-full;
+  }
+
+  .post-title {
+    @apply text-5xl text-shadow-xs text-shadow-black mb-8;
+  }
+
+  .post-excerpt {
+    @apply text-lg mb-8;
+  }
+</style>
+
+<article class="hero-blog-post">
+  <img class="featured-image" alt={post.data.title} src={post.data.featured_image}>
+  <section class="summary">
+    <h3 class="post-title" set:html={post.data.title}/>
+    <div class="post-excerpt" set:html={post.data.excerpt}/>
+    <Button color="light" background="transparent" url={permalink}>Continue reading</Button>
+  </section>
+</article>

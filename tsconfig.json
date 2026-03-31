@@ -1,9 +1,24 @@
 {
-  "extends": "astro/tsconfigs/base",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*",
+    "./worker-configuration.d.ts"
+  ],
+  "exclude": [
+    "dist"
+  ],
   "compilerOptions": {
-    "allowJs": true,
-    "strictNullChecks": true
-  }
+    "strictNullChecks": true,
+    "types": [
+        "./worker-configuration.d.ts",
+        "unplugin-icons/types/astro"
+    ],
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@layout/*": ["./src/layouts/*"],
+      "@component/*": ["./src/components/*"],
+      "@assets/*": ["./src/assets/*"]
+    }
+  },
 }

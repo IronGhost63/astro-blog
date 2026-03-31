@@ -1,0 +1,36 @@
+---
+import { getPostPermalink } from "@src/helpers";
+
+const { post } = Astro.props;
+const permalink = getPostPermalink(post.data);
+---
+<style>
+  @reference "../styles/app.css";
+
+  article {
+    @apply card-border text-black aspect-3/4 relative;
+
+    &::before {
+      @apply content-[''] absolute z-5 bg-linear-to-t from-black/80 to-black/20 top-0 left-0 right-0 bottom-0;
+    }
+  }
+
+  .summary {
+    @apply absolute z-10 bottom-0 w-full p-4 text-white text-shadow-xs text-shadow-black text-lg;
+  }
+
+  .featured-image {
+    @apply w-full h-full object-cover relative z-1;
+  }
+
+  .blog-card-small-link {
+    @apply block;
+  }
+</style>
+
+<a href={permalink} class="blog-card-small-link">
+  <article class="blog-card-small">
+    <img src={post.data.featured_image} alt={post.data.title} class="featured-image">
+    <section class="summary">{post.data.title}</section>
+  </article>
+</a>

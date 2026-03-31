@@ -1,0 +1,36 @@
+---
+import HeroCard from "@component/HeroCard.astro";
+import BlogCardSmall from "@component/BlogCardSmall.astro";
+import Pagination from "@component/Pagination.astro";
+import { POSTS_PER_PAGE } from "@src/consts";
+
+const { firstPost, morePosts, totalPosts } = Astro.props;
+const totalPages = Math.ceil(totalPosts/POSTS_PER_PAGE);
+---
+<style>
+  @reference "../styles/app.css";
+
+  section {
+    @apply grid gap-6 max-w-280 mx-auto w-full lg:grid-cols-4;
+
+    .hero-blog-post {
+      @apply col-span-full;
+    }
+
+    .section-title {
+      @apply col-span-full text-3xl mt-10;
+    }
+
+    .pagination {
+      @apply col-span-full;
+    }
+  }
+</style>
+<section class="home-post-grid">
+  <HeroCard post={firstPost}/>
+  <h3 class="section-title">More Posts</h3>
+  {morePosts.map((post) => (
+    <BlogCardSmall post={post}/>
+  ))}
+  <Pagination totalPages={totalPages} currentPage="1" baseUrl="/page" nextUrl="/page/2" lastUrl={`/page/${totalPages}`} firstUrl="/"/>
+</section>

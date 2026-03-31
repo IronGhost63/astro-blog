@@ -1,0 +1,57 @@
+---
+import ContentArea from "@component/ContentArea.astro";
+import Button from "@component/Button.astro";
+import { getPostPermalink } from "@src/helpers";
+
+const {post} = Astro.props;
+const permalink = getPostPermalink(post.data);
+---
+<style>
+  @reference "../styles/app.css";
+
+  article {
+    @apply text-black card-border;
+  }
+
+  header {
+    @apply relative h-85 bg-white rounded-b-4xl overflow-clip;
+
+    &::before {
+      @apply content-[''] absolute z-5 top-0 left-0 right-0 bottom-0 bg-linear-to-t from-black to-transparent;
+    }
+
+    .featured-image {
+      @apply relative z-1 w-full h-full object-cover;
+    }
+
+    .post-title {
+      @apply absolute z-10 bottom-0 text-4xl font-medium p-6 leading-12 text-white text-shadow-xs text-shadow-black;
+    }
+  }
+
+  main {
+    @apply p-6 bg-white;
+  }
+
+  .read-more {
+    @apply mt-12 mb-3 pt-6 border-t border-gray/20 text-center;
+  }
+</style>
+
+<article class="blog-entry-card">
+  <header>
+    {post.data.featured_image && (
+      <img class="featured-image" alt={post.data.title} src={post.data.featured_image}/>
+    )}
+    <h1 class="post-title">
+      <a href={permalink} set:html={post.data.title} class="post-title-link"/>
+      <!-- <Icon name="line-md:arrow-right" /> -->
+    </h1>
+  </header>
+  <main>
+    <ContentArea content={post.data.excerpt}/>
+    <section class="read-more">
+      <Button url={permalink} color="light" background="transparent">Read More</Button>
+    </section>
+  </main>
+</article>

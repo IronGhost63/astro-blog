@@ -1,64 +1,70 @@
 ---
-import App from "../../../layouts/App.astro";
-import ContentArea from "../../../components/ContentArea.astro";
-import { CMS_URL } from "../../../consts";
-import postsIndex from "../../../data/postIndex";
-import { getFeaturedImage } from "../../../utilities/post-utilities";
+import { getCollection } from 'astro:content';
+import dayjs from 'dayjs';
+import App from "@src/layouts/App.astro";
+import ContentArea from "@component/ContentArea.astro";
+import { SITE_TITLE } from "@src/consts";
 
-export const getStaticPaths = async () => {
-  return postsIndex.results.map((item) => {
+export async function getStaticPaths() {
+	const posts = await getCollection('web');
+
+	return posts.map((post) => {
+    const postDate = dayjs(post.data.datetime);
+
     const routes = {
       params: {
-        year: item.year,
-        month: item.month,
-        slug: decodeURI(item.slug),
-      }
+        year: String(postDate.year()),
+        month: String(postDate.month()).padStart(2, '0'),
+        slug: decodeURI(post.data.slug),
+      },
+      props: {post: post.data},
     }
 
     return routes;
   });
-};
-
-const { slug } = Astro.params;
-
-const fetchData = async () => {
-  const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts/?slug=${encodeURI(slug)}&_embed`);
-  const post = await res.json();
-
-  return post;
 }
 
-const postData = await fetchData();
-const featuredImage = getFeaturedImage( postData[0] );
+const { post } = Astro.props;
+const pageTitle = `${post.title} - ${SITE_TITLE}`;
 ---
-<script>
-const postContent = document.querySelector('.post-content');
-const codeBlocks = postContent?.querySelectorAll('.wp-block-code code');
+<style>
+  @reference "../../../styles/app.css";
 
-if ( codeBlocks && codeBlocks.length > 0) {
-  const { default:hljs } = await import("highlight.js");
+  article {
+    @apply bg-white max-w-240 text-black mx-auto card-border;
+  }
 
-  codeBlocks.forEach((code) => {
-    hljs.highlightElement(code);
-  });
-}
-</script>
-<App>
-  <div class="container mx-auto">
-    { postData.map( (post) => (
-      <div class="post-body max-w-[720px] px-4 mx-auto">
-        <div class="post-header">
-          <h1 class="post-title heading-1" set:html={post.title.rendered} />
-          {featuredImage && (
-            <div class="post-cover py-4 mb-4 lg:mb-8">
-              <img src={featuredImage} alt={post.title.rendered} class="post-cover-image">
-            </div>
-          )}
-        </div>
-        <ContentArea>
-          <div class="post-content" set:html={post.content.rendered} />
-        </ContentArea>
-      </div>
-    )) }
-  </div>
+  header {
+    @apply relative h-85 bg-white rounded-b-4xl overflow-clip;
+
+    &::before {
+      @apply content-[''] absolute z-5 top-0 left-0 right-0 bottom-0 bg-linear-to-t from-black to-transparent;
+    }
+
+    .featured-image {
+      @apply relative z-1 w-full h-full object-cover;
+    }
+
+    .post-title {
+      @apply absolute z-10 bottom-0 text-4xl font-medium p-6 leading-12 text-white text-shadow-xs text-shadow-black;
+    }
+  }
+
+  main {
+    @apply p-6;
+  }
+</style>
+
+<App title={pageTitle}>
+  <article>
+    <header>
+      {post.featured_image && (
+        <img class="featured-image" alt={post.title} src={post.featured_image}/>
+      )}
+      <h1 class="post-title" set:html={post.title}/>
+    </header>
+    <main>
+      <ContentArea content={post.content}/>
+    </main>
+  </article>
 </App>

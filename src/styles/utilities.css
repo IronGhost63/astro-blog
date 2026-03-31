@@ -25,3 +25,7 @@
 @utility heading-6 {
   @apply text-[10px];
 }
+
+@utility card-border {
+  @apply border-8 border-white bg-white rounded-4xl overflow-clip;
+}

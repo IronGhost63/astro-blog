@@ -1,15 +1,70 @@
 ---
-const { url } = Astro.props;
+const { url = '', color = 'dark', background = 'solid', class: className } = Astro.props;
 ---
 <style>
   @reference "../styles/app.css";
 
   .cta-button {
-    @apply inline-block px-4 py-1 uppercase text-sm tracking-wider font-bold border rounded-2xl border-gray-300 transition-all duration-300 ease-in-out;
+    --border-color: var(--color-black);
+    --text-color: var(--color-white);
+    --bg-color: var(--color-black);
+    --hover-border-color: var(--color-black);
+    --hover-text-color: var(--color-black);
+    --hover-bg-color: var(--color-white);
+
+    @apply inline-block relative px-4 py-1 tracking-wider border rounded-2xl transition-all duration-300 ease-in-out overflow-clip bg-(--bg-color) text-(--text-color) border-(--border-color);
+
+    &::before {
+      @apply content-[''] absolute z-0 -right-px -top-px -bottom-px w-0 bg-(--hover-bg-color) rounded-2xl transition-all duration-150 ease-in-out;
+    }
+
+    .inner {
+      @apply relative z-1;
+    }
 
     &:hover {
-      @apply rounded-md;
+      @apply text-(--hover-text-color);
+
+      &::before {
+        @apply w-[calc(100%+2px)] rounded-md
+      }
+    }
+
+    &.dark.solid {
+      --border-color: var(--color-black);
+      --text-color: var(--color-white);
+      --bg-color: var(--color-black);
+      --hover-border-color: var(--color-black);
+      --hover-text-color: var(--color-black);
+      --hover-bg-color: var(--color-white);
+    }
+
+    &.dark.transparent {
+      --border-color: var(--color-white);
+      --text-color: var(--color-white);
+      --bg-color: transparent;
+      --hover-border-color: var(--color-white);
+      --hover-text-color: var(--color-black);
+      --hover-bg-color: var(--color-white);
+    }
+
+    &.light.solid {
+      --border-color: var(--color-white);
+      --text-color: var(--color-black);
+      --bg-color: var(--color-white);
+      --hover-border-color: var(--color-white);
+      --hover-text-color: var(--color-white);
+      --hover-bg-color: var(--color-black);
+    }
+
+    &.light.transparent {
+      --border-color: var(--color-black);
+      --text-color: var(--color-black);
+      --bg-color: transparent;
+      --hover-border-color: var(--color-black);
+      --hover-text-color: var(--color-white);
+      --hover-bg-color: var(--color-black);
     }
   }
 </style>
-<a href={url} class="cta-button"><slot/></a>
+<a href={url} class={`cta-button ${color} ${background} ${className}`}><div class="inner"><slot/></div></a>

@@ -1,33 +1,39 @@
 {
-  "name": "cloudflare-astro-blog",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro build && wrangler dev",
-    "astro": "astro",
-    "deploy": "astro build && wrangler deploy",
-    "cf-typegen": "wrangler types"
-  },
-  "dependencies": {
-    "@astrojs/cloudflare": "^12.6.12",
-    "@astrojs/mdx": "^4.3.10",
-    "@astrojs/partytown": "^2.1.4",
-    "@astrojs/rss": "^4.0.13",
-    "@astrojs/sitemap": "^3.6.0",
-    "@jop-software/astro-cookieconsent": "^3.0.1",
-    "@swup/astro": "^1.7.0",
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.17.2",
-    "dayjs": "^1.11.19",
-    "highlight.js": "^11.11.1",
-    "sharp": "^0.34.3",
-    "tailwindcss": "^4.1.17",
-    "vanilla-cookieconsent": "^3.1.0"
-  },
-  "devDependencies": {
-    "@types/node": "^25.2.3",
-    "wrangler": "^4.65.0"
-  }
+	"name": "cf-astro-6",
+	"type": "module",
+	"version": "0.0.1",
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro build && astro preview",
+		"astro": "astro",
+		"generate-types": "wrangler types",
+		"deploy": "astro build && wrangler deploy",
+		"cf-typegen": "wrangler types"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^13.1.4",
+		"@astrojs/mdx": "^5.0.3",
+		"@astrojs/partytown": "^2.1.6",
+		"@astrojs/rss": "^4.0.18",
+		"@astrojs/sitemap": "^3.7.2",
+		"@iconify-json/mdi": "^1.2.3",
+		"@iconify/json": "^2.2.458",
+		"@tailwindcss/vite": "^4.2.2",
+		"astro": "^6.1.1",
+		"dayjs": "^1.11.20",
+		"highlight.js": "^11.11.1",
+		"sharp": "^0.34.3",
+		"tailwindcss": "^4.2.2",
+		"unplugin-icons": "^23.0.1"
+	},
+	"devDependencies": {
+		"wrangler": "^4.78.0"
+	},
+	"overrides": {
+		"vite": "^7"
+	}
 }

@@ -1,7 +1,70 @@
 ---
-const { totalPages, currentPage, baseUrl } = Astro.props;
+import IconFirst from '~icons/material-symbols/keyboard-double-arrow-left-rounded';
+import IconLast from '~icons/material-symbols/keyboard-double-arrow-right';
+import IconPrev from '~icons/material-symbols/chevron-left-rounded';
+import IconNext from '~icons/material-symbols/chevron-right-rounded';
+
+const {
+  totalPages,
+  currentPage,
+  firstUrl = '/',
+  lastUrl = '',
+  prevUrl = '',
+  nextUrl = '',
+  baseUrl = '/page'
+} = Astro.props;
 ---
-<div class="pagination">
+<style>
+  @reference "../styles/app.css";
+
+  .pagination-list {
+    @apply flex justify-center;
+  }
+
+  .page {
+    @apply block w-8 h-8 mx-1;
+  }
+
+  .page-link {
+    @apply flex items-center justify-center w-full h-full;
+
+    &.active {
+      @apply bg-gray/20;
+    }
+
+    &:hover {
+      @apply bg-gray/40;
+    }
+  }
+</style>
+
+<section class="pagination">
+  <ul class="pagination-list">
+    {(currentPage > 1) && (
+      <li class="page first-page">
+        <a href={firstUrl} class="page-link" data-page="1"><IconFirst/></a>
+      </li>
+      <li class="page prev-page">
+        <a href={prevUrl} class="page-link" data-page="1"><IconPrev/></a>
+      </li>
+    )}
+    { Array.from({ length: totalPages }, (_, i) => i + 1).map( (page) => (
+      <li class="page item">
+        <a href={page > 1 ? `${baseUrl}/${page}` : firstUrl} data-page={page} class={`page-link ${page === currentPage ? 'active' : ''}`}>{page}</a>
+      </li>
+    )) }
+    {(currentPage < totalPages) && (
+      <li class="page next-page">
+        <a href={nextUrl} class="page-link" data-page="1"><IconNext/></a>
+      </li>
+      <li class="page last-page">
+        <a href={lastUrl} class="page-link" data-page={totalPages}><IconLast/></a>
+      </li>
+    )}
+  </ul>
+</section>
+
+<!-- <div class="pagination">
   <ul class="flex justify-center">
     { Array.from({ length: totalPages }, (_, i) => i + 1).map( (page) => (
       <li class="px-1">
@@ -9,4 +72,4 @@ const { totalPages, currentPage, baseUrl } = Astro.props;
       </li>
     )) }
   </ul>
-</div>
+</div> -->

@@ -1,35 +1,44 @@
 ---
-import App from "../../layouts/App.astro";
-import BlogItem from "../../components/BlogItem.astro";
-import Pagination from "../../components/Pagination.astro";
-import postIndex from "../../data/postIndex";
-import { POSTS_PER_PAGE, CMS_URL } from "../../consts";
+import { getCollection } from 'astro:content';
+import dayjs from "dayjs"
+import { POSTS_PER_PAGE } from "../../consts";
+import App from "@layout/App.astro";
+import BlogCard from "@component/BlogCard.astro";
+import Pagination from "@component/Pagination.astro";
+import { SITE_TITLE } from "@src/consts";
 
-const totalPosts = postIndex.results.length;
-const totalPages = Math.ceil( totalPosts/POSTS_PER_PAGE );
+export async function getStaticPaths({ paginate }) {
+	const posts = await getCollection('web');
 
-export const getStaticPaths = async () => {
-  const totalPosts = postIndex.results.length;
-  const totalPages = Math.ceil( totalPosts/POSTS_PER_PAGE );
+  posts.sort((a, b) => dayjs(b.data.datetime).diff(dayjs(a.data.datetime)));
 
-  return Array.from({ length: totalPages }, (_, i) => i + 1).map(( item ) => {
-    return {
-      params: {
-        page: item,
-      }
-    }
-  });
+  return paginate(posts, { pageSize: POSTS_PER_PAGE });
 }
 
-const { page } = Astro.params;
-const res = await fetch(`${CMS_URL}/wp-json/wp/v2/posts?page=${page}&per_page=${POSTS_PER_PAGE}&_embed`);
-const posts = await res.json();
+const { page } = Astro.props;
+const pageTitle = `Archive Page ${page.currentPage} - ${SITE_TITLE}`;
+const totalPages = Math.ceil(page.total/page.size);
+
+console.log(page)
 ---
-<App>
-  <div class="container mx-auto">
-    { posts.map( (post) => (
-      <BlogItem postData={post} />
+<style>
+  @reference "../../styles/app.css";
+
+  .container {
+    @apply mx-auto max-w-240;
+  }
+
+  .entry-item {
+    @apply max-w-180 w-full mx-4 lg:mx-auto mb-14;
+  }
+</style>
+<App title={pageTitle}>
+  <ul class="entry-list">
+    { page.data.map( (post) => (
+      <li class="entry-item">
+        <BlogCard post={post} />
+      </li>
     )) }
-    <Pagination currentPage={page} baseUrl="/page" totalPages={totalPages}/>
-  </div>
+  </ul>
+  <Pagination totalPages={totalPages} currentPage={page.currentPage} baseUrl="/page" nextUrl={page.url.next} prevUrl={page.url.prev} lastUrl={page.url.last} firstUrl="/"/>
 </App>
