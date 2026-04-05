@@ -4,13 +4,27 @@ import Header from "@component/Header.astro";
 import Footer from "@component/Footer.astro";
 import { SITE_TITLE } from "@src/consts";
 
-const { title = SITE_TITLE } = Astro.props
+const {
+  title = SITE_TITLE,
+  previewImage = '',
+  previewTitle = '',
+  previewUrl = '',
+} = Astro.props
 ---
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {previewImage && (
+      <meta property="og:image" content={previewImage}/>
+    )}
+    {previewTitle && (
+      <meta property="og:title" content={previewTitle}/>
+    )}
+    {previewUrl && (
+      <meta property="og:url" content={previewUrl}/>
+    )}
     <title>{title}</title>
     <!-- Google tag (gtag.js) -->
     <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-M2C2Y4K919"></script>

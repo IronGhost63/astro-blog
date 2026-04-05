@@ -25,6 +25,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
+const pageUrl = Astro.request.url;
 const pageTitle = `${post.title} - ${SITE_TITLE}`;
 ---
 <style>
@@ -55,7 +56,7 @@ const pageTitle = `${post.title} - ${SITE_TITLE}`;
   }
 </style>
 
-<App title={pageTitle}>
+<App title={pageTitle} preview-url={pageUrl} preview-image={post.featured_image ? post.featured_image : ''} preview-title={pageTitle}>
   <article>
     <header>
       {post.featured_image && (
