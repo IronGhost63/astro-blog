@@ -5,7 +5,8 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
-import Icons from 'unplugin-icons/vite'
+import Icons from 'unplugin-icons/vite';
+import Swup from '@swup/astro';
 
 import partytown from '@astrojs/partytown';
 
@@ -20,7 +21,11 @@ export default defineConfig({
       config: {
         forward: ["dataLayer.push"],
       },
-    })],
+    }),
+    Swup({
+      containers: ['.main']
+    }),
+  ],
   adapter: cloudflare(),
   vite: {
     plugins: [tailwindcss(), Icons({ compiler: 'astro' })],
