@@ -7,7 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import Icons from 'unplugin-icons/vite';
 import Swup from '@swup/astro';
-
 import partytown from '@astrojs/partytown';
 
 // https://astro.build/config

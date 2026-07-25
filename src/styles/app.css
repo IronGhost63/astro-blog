@@ -26,6 +26,7 @@
   --font-bebas: "Bebas Neue", sans-serif;
   --font-ibm-plex: "IBM Plex Sans Thai", sans-serif;
   --font-sarabun: "Sarabun", sans-serif;
+  --color-ink-black: var(--color-ink-black);
   --color-black: var(--color-carbon-black);
   --color-alt-black: var(--color-alt-black);
   --color-gray: var(--color-slate-gray);
@@ -36,6 +37,7 @@
   --color-dark-green: var(--color-emerald-depths);
   --color-yellow: var(--color-mustard);
   --color-orange: var(--color-deep-saffron);
+  --color-space-indigo: var(--color-space-indigo);
 }
 
 @layer base {
