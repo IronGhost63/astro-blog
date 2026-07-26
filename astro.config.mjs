@@ -19,12 +19,12 @@ export default defineConfig({
     partytown({
       config: {
         forward: ["dataLayer.push"],
-        resolveUrl: (url, location, type) => {
-          if (type === 'script' && url.hostname === location.hostname) {
-            return url;
-          }
-          return url;
-        },
+        // resolveUrl: (url, location, type) => {
+        //   if (type === 'script' && url.hostname === location.hostname) {
+        //     return url;
+        //   }
+        //   return url;
+        // },
       },
     }),
     // Swup({
