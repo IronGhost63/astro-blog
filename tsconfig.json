@@ -11,14 +11,24 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "types": [
-        "./worker-configuration.d.ts",
-        "unplugin-icons/types/astro"
+      "./worker-configuration.d.ts",
+      "unplugin-icons/types/astro"
     ],
     "paths": {
-      "@src/*": ["./src/*"],
-      "@layout/*": ["./src/layouts/*"],
-      "@component/*": ["./src/components/*"],
-      "@assets/*": ["./src/assets/*"]
-    }
-  },
+      "@src/*": [
+        "./src/*"
+      ],
+      "@layout/*": [
+        "./src/layouts/*"
+      ],
+      "@component/*": [
+        "./src/components/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

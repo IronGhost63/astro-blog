@@ -6,8 +6,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import Icons from 'unplugin-icons/vite';
-import Swup from '@swup/astro';
 import partytown from '@astrojs/partytown';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,24 +16,12 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
+    react(),
     partytown({
       config: {
         forward: ["dataLayer.push"],
-        // resolveUrl: (url, location, type) => {
-        //   if (type === 'script' && url.hostname === location.hostname) {
-        //     return url;
-        //   }
-        //   return url;
-        // },
       },
     }),
-    // Swup({
-    //   globalInstance: true,
-    //   containers: ['.main'],
-    //   ignore: [
-    //     'a[data-no-swup]', // Ignores any explicit no-swup links
-    //   ]
-    // }),
   ],
   adapter: cloudflare(),
   vite: {

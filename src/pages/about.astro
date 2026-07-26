@@ -3,44 +3,16 @@ import App from "@src/layouts/App.astro";
 import EmailIcon from '~icons/mdi/email';
 import GithubIcon from '~icons/mdi/github';
 import LinkedinIcon from '~icons/mdi/linkedin';
-
 import ProfileImage from "@src/assets/profile-square.png";
+import TypewriterComponent from 'typewriter-effect';
+
+const typingWords = ['WordPress', 'JavaScript', 'React', 'Astro', 'PHP', 'NodeJS', 'Cloudflare', 'Alien!'];
 ---
-<script>
-  const fixSwupScrape = () => {
-    window.swup.hooks.on('content:replace', () => {
-      if (window.__cfEmailDecode__) {
-        window.__cfEmailDecode__();
-      } else {
-        const injectedScriptTag = document.querySelector('script[src*="email-decode.min.js"]');
-
-        if (injectedScriptTag) {
-          const scriptTag = document.createElement('script');
-
-          scriptTag.src = injectedScriptTag.src;
-          scriptTag.defer = true;
-
-          injectedScriptTag.remove();
-
-          document.body.appendChild(scriptTag);
-
-          scriptTag.remove();
-        }
-      }
-    });
-  }
-
-  if (window.swup) {
-    fixSwupScrape()
-  } else {
-    document.addEventListener('swup:enable', fixSwupScrape)
-  }
-</script>
 <style>
 	@reference "../styles/app.css";
 
   .header {
-    @apply grid lg:grid-cols-2 gap-3 max-w-full lg:max-w-5xl mx-auto font-ibm-plex place-items-center mb-8 lg:mb-12;
+    @apply grid md:grid-cols-2 gap-3 max-w-full lg:max-w-5xl mx-auto font-ibm-plex place-items-center mb-8 lg:mb-12;
 
     .title {
       @apply text-3xl md:text-7xl mb-6 lg:mb-8;
@@ -50,6 +22,14 @@ import ProfileImage from "@src/assets/profile-square.png";
       p {
         @apply mb-4
       }
+    }
+
+    .picture {
+      @apply relative;
+    }
+
+    .words {
+      @apply absolute z-10 bottom-12 lg:bottom-18 top-0 w-full flex justify-center items-end text-4xl lg:text-6xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)];
     }
 
     .profile-picture {
@@ -84,12 +64,22 @@ import ProfileImage from "@src/assets/profile-square.png";
     <div class="content">
       <h1 class="title">Greeting!</h1>
       <div class="intro">
-        <p>Senior Software Engineer with over a decade of experience across frontend and backend development, from WordPress to Astro, from PHP to JavaScript, and plenty in between. I build things, break things, fix things, and occasionally even make them work on the first try.</p>
+        <p>I am Jay. A Senior Software Engineer with over a decade of experience across frontend and backend development, from WordPress to Astro, from PHP to JavaScript, and plenty in between. I build things, break things, fix things, and occasionally even make them work on the first try.</p>
         <p>And a father of 6 cats.</p>
       </div>
     </div>
     <div class="picture">
       <img src={ProfileImage.src} alt="This is me!" class="profile-picture"/>
+      <div class="words">
+        <TypewriterComponent
+          client:load
+          options={{
+            strings: typingWords,
+            autoStart: true,
+            loop: true,
+          }}
+        />
+      </div>
     </div>
   </div>
   <div class="quick-contact">
