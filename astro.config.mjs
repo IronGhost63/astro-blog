@@ -19,11 +19,20 @@ export default defineConfig({
     partytown({
       config: {
         forward: ["dataLayer.push"],
+        resolveUrl: (url, location, type) => {
+          if (type === 'script' && url.hostname === location.hostname) {
+            return url;
+          }
+          return url;
+        },
       },
     }),
     Swup({
       globalInstance: true,
       containers: ['.main'],
+      ignore: [
+        'a[data-no-swup]', // Ignores any explicit no-swup links
+      ]
     }),
   ],
   adapter: cloudflare(),

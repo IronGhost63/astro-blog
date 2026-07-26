@@ -39,6 +39,21 @@ const {
         'cookie_flags': 'SameSite=None;Secure',
       });
     </script>
+    <script>
+      const trackSwupPageView = () => {
+        // Only fire if Partytown proxying has initialized window.gtag
+        if (typeof window.gtag === 'function') {
+          window.gtag('config', 'G-M2C2Y4K919', {
+            'page_path': window.location.pathname,
+            'cookie_domain': window.location.hostname,
+            'cookie_flags': 'SameSite=None;Secure',
+          });
+        }
+      }
+
+      // Hook directly into Swup's content replacement lifecycle
+      document.addEventListener('swup:contentReplaced', trackSwupPageView);
+    </script>
   </head>
   <body>
     <Header/>
