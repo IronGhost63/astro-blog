@@ -12,16 +12,10 @@ const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
   @reference "../styles/app.css";
 
   a {
-    @apply inline-block no-underline relative px-0 py-5 mx-2;
+    @apply link-underline px-0 py-5 mx-2;
 
     &::before {
-      @apply content-[''] absolute border-b border-white bottom-4.5 right-0 w-0 transition-all duration-150;
-    }
-
-    &:hover {
-      &::before {
-        @apply w-full;
-      }
+      @apply bottom-4.5;
     }
   }
 </style>

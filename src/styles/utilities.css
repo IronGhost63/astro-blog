@@ -29,3 +29,17 @@
 @utility card-border {
   @apply border-8 border-white bg-white rounded-4xl overflow-clip;
 }
+
+@utility link-underline {
+  @apply inline-block no-underline relative;
+
+  &::before {
+    @apply content-[''] absolute border-b border-white bottom-1 right-0 w-0 transition-all duration-150;
+  }
+
+  &:hover {
+    &::before {
+      @apply w-full;
+    }
+  }
+}
