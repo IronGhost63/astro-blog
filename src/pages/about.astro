@@ -7,34 +7,34 @@ import LinkedinIcon from '~icons/mdi/linkedin';
 import ProfileImage from "@src/assets/profile-square.jpg";
 ---
 <script>
-  const fixSwupScrape = () => {
-    window.swup.hooks.on('content:replace', () => {
-      if (window.__cfEmailDecode__) {
-        window.__cfEmailDecode__();
-      } else {
-        const injectedScriptTag = document.querySelector('script[src*="email-decode.min.js"]');
+  // const fixSwupScrape = () => {
+  //   window.swup.hooks.on('content:replace', () => {
+  //     if (window.__cfEmailDecode__) {
+  //       window.__cfEmailDecode__();
+  //     } else {
+  //       const injectedScriptTag = document.querySelector('script[src*="email-decode.min.js"]');
 
-        if (injectedScriptTag) {
-          const scriptTag = document.createElement('script');
+  //       if (injectedScriptTag) {
+  //         const scriptTag = document.createElement('script');
 
-          scriptTag.src = injectedScriptTag.src;
-          scriptTag.defer = true;
+  //         scriptTag.src = injectedScriptTag.src;
+  //         scriptTag.defer = true;
 
-          injectedScriptTag.remove();
+  //         injectedScriptTag.remove();
 
-          document.body.appendChild(scriptTag);
+  //         document.body.appendChild(scriptTag);
 
-          scriptTag.remove();
-        }
-      }
-    });
-  }
+  //         scriptTag.remove();
+  //       }
+  //     }
+  //   });
+  // }
 
-  if (window.swup) {
-    fixSwupScrape()
-  } else {
-    document.addEventListener('swup:enable', fixSwupScrape)
-  }
+  // if (window.swup) {
+  //   fixSwupScrape()
+  // } else {
+  //   document.addEventListener('swup:enable', fixSwupScrape)
+  // }
 </script>
 <style>
 	@reference "../styles/app.css";
