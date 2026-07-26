@@ -20,6 +20,8 @@ import ProfileImage from "@src/assets/profile-square.jpg";
           scriptTag.src = injectedScriptTag.src;
           scriptTag.defer = true;
 
+          injectedScriptTag.remove();
+
           document.body.appendChild(scriptTag);
 
           scriptTag.remove();
@@ -28,11 +30,11 @@ import ProfileImage from "@src/assets/profile-square.jpg";
     });
   }
 
-  // if (window.swup) {
-  //   fixSwupScrape()
-  // } else {
-  //   document.addEventListener('swup:enable', fixSwupScrape)
-  // }
+  if (window.swup) {
+    fixSwupScrape()
+  } else {
+    document.addEventListener('swup:enable', fixSwupScrape)
+  }
 </script>
 <style>
 	@reference "../styles/app.css";
