@@ -16,17 +16,17 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-        resolveUrl: (url, location, type) => {
-          if (type === 'script' && url.hostname === location.hostname) {
-            return url;
-          }
-          return url;
-        },
-      },
-    }),
+    // partytown({
+    //   config: {
+    //     forward: ["dataLayer.push"],
+    //     resolveUrl: (url, location, type) => {
+    //       if (type === 'script' && url.hostname === location.hostname) {
+    //         return url;
+    //       }
+    //       return url;
+    //     },
+    //   },
+    // }),
     Swup({
       globalInstance: true,
       containers: ['.main'],
