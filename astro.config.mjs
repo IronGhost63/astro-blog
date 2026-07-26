@@ -22,7 +22,8 @@ export default defineConfig({
       },
     }),
     Swup({
-      containers: ['.main']
+      globalInstance: true,
+      containers: ['.main'],
     }),
   ],
   adapter: cloudflare(),

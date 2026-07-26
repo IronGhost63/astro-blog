@@ -6,6 +6,26 @@ import LinkedinIcon from '~icons/mdi/linkedin';
 
 import ProfileImage from "@src/assets/profile-square.jpg";
 ---
+<script>
+  window.swup.hooks.on('content:replace', () => {
+    if (window.__cfEmailDecode__) {
+      window.__cfEmailDecode__();
+    } else {
+      const injectedScriptTag = document.querySelector('script[src*="email-decode.min.js"]');
+
+      if (injectedScriptTag) {
+        const scriptTag = document.createElement('script');
+
+        scriptTag.src = injectedScriptTag.src;
+        scriptTag.defer = true;
+
+        document.body.appendChild(scriptTag);
+
+        scriptTag.remove();
+      }
+    }
+  });
+</script>
 <style>
 	@reference "../styles/app.css";
 
