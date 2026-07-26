@@ -34,7 +34,10 @@ const {
       window.gtag = function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-M2C2Y4K919');
+      gtag('config', 'G-M2C2Y4K919', {
+        'cookie_domain': window.location.hostname,
+        'cookie_flags': 'SameSite=None;Secure',
+      });
     </script>
   </head>
   <body>
