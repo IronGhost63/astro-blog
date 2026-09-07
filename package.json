@@ -12,7 +12,8 @@
 		"astro": "astro",
 		"generate-types": "wrangler types",
 		"deploy": "astro build && wrangler deploy",
-		"cf-typegen": "wrangler types"
+		"cf-typegen": "wrangler types",
+		"bump": "d=$(date '+%Y-%m-%d %H:%M:%S'); printf '%s - %s\\n' \"$d\" \"$(printf '%s' \"$d\" | sha1sum | cut -d' ' -f1)\" >> bump.log"
 	},
 	"dependencies": {
 		"@astrojs/cloudflare": "^13.1.4",
