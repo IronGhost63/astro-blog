@@ -51,8 +51,54 @@ const {content} = Astro.props;
       @apply pl-2;
     }
 
+    hr {
+      @apply my-6 lg:my-10 border-t-gray-900/20 border-dashed;
+    }
+
     .wp-block-image {
       @apply my-6 lg:my-10;
+    }
+
+    .wp-block-gallery {
+      @apply grid gap-2 my-6 lg:my-10;
+
+      .wp-block-image {
+        @apply my-0;
+      }
+
+      &:has(> .wp-block-image:only-child) {
+        @apply max-w-120 w-full mx-auto;
+      }
+
+      &:has(> .wp-block-image:nth-child(2)) {
+        @apply md:grid-cols-2;
+      }
+
+      &:has(> .wp-block-image:nth-child(3)) {
+        @apply md:grid-cols-3;
+      }
+    }
+
+    .wp-block-table {
+      @apply my-4 md:my-8;
+
+      table {
+        @apply border border-gray-900/20 border-collapse;
+      }
+
+      th, td {
+        @apply p-2 border-b border-b-gray-900/20;
+      }
+
+      thead tr {
+        @apply bg-gray-900/5;
+      }
+
+      &.is-style-stripes {
+        tr:nth-child(even) {
+          @apply bg-gray-900/5;
+        }
+      }
     }
   }
 </style>
